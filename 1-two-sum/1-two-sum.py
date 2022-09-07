@@ -1,15 +1,15 @@
 import collections
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        info = collections.namedtuple('info','value index')
-        my_nums = [ info(value,index) for index, value in enumerate(nums)]
-        my_nums.sort(key=lambda x:x.value)
-        start = 0
-        end = len(nums) - 1
-        while start < end:
-            if my_nums[start].value + my_nums[end].value == target:
-                return sorted([my_nums[start].index, my_nums[end].index])
-            elif my_nums[start].value + my_nums[end].value > target:
-                end -= 1
-            else:
-                start += 1
+        valueIndex = collections.defaultdict(list)
+        
+        for index, num in enumerate(nums):
+            valueIndex[num].append(index)
+        
+        keySet = set(valueIndex.keys())
+        for key in valueIndex.keys():
+            if target - key in keySet:
+                if target - key == key and len(valueIndex[key]) >= 2:
+                    return valueIndex[key]
+                if target - key != key:
+                    return [valueIndex[key][0], valueIndex[target - key][0]]
