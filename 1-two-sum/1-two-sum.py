@@ -7,7 +7,7 @@ class Solution:
             valueIndex[num].append(index)
         
         keySet = set(valueIndex.keys())
-        for key in valueIndex.keys():
+        for key in keySet:
             if target - key in keySet:
                 if target - key == key and len(valueIndex[key]) >= 2:
                     return valueIndex[key]
