@@ -21,15 +21,17 @@ class Solution:
             if getSmall:
                 return returnSmaller
             return returnBigger
-
+        
+        get_small_list = get_next_list()
+        get_big_list = get_next_list(False)
         while data_keys:
-            current_turn = get_next_list()(odd_list, even_list)
+            current_turn = get_small_list(odd_list, even_list)
             current_key = data_keys.popleft()
             for _ in range(data[current_key]):
                 current_turn.append(current_key)
 
-        big_list = get_next_list(False)(odd_list, even_list)
-        small_list = get_next_list()(odd_list, even_list)
+        big_list = get_big_list(odd_list, even_list)
+        small_list = get_small_list(odd_list, even_list)
         third_list = []
         if len(big_list) - len(small_list) >= 2:
             big_list, third_list = big_list[:len(small_list
