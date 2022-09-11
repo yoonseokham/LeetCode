@@ -29,22 +29,9 @@ class Solution:
         third_list = []
         if len(over_flow_list) - len(small_list) >= 2:
             over_flow_list, third_list = over_flow_list[:len(small_list)],over_flow_list[len(small_list):]
-        print(small_list)
-        print(over_flow_list)
-        print(third_list)
         answer = []
         for i in range(len(over_flow_list)):
             for any_list in (over_flow_list,small_list,third_list):
                 if i < len(any_list):
                     answer.append(any_list[i])
         return answer
-                    
-        
-        '''
-        [1,1,1,2,2,2]
-        [1,1,1,1,2,2,3,3]
-        [1]
-        [1,1,2]
-        [1,2,2,2,4,4]
-        [7,7,7,8,5,7,5,5,5,8]
-        '''
