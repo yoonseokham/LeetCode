@@ -16,11 +16,9 @@ class Solution:
         is_odd_turn = True
 
         def get_next_list(getSmall=True):
-            returnBigger = lambda a, b: a if len(a) >= len(b) else b
-            returnSmaller = lambda a, b: a if len(a) < len(b) else b
             if getSmall:
-                return returnSmaller
-            return returnBigger
+                return lambda a, b: a if len(a) < len(b) else b
+            return lambda a, b: a if len(a) >= len(b) else b
         
         get_small_list = get_next_list()
         get_big_list = get_next_list(False)
