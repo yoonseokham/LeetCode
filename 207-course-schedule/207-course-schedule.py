@@ -22,7 +22,7 @@ class Solution:
                     for node in graph[current_node]:
                         if not visited[node]:
                             dfs(node)
-                        elif visited[node] == 'visiting':
+                        if visited[node] == 'visiting':
                             isCycle = True
                     visited[current_node] = 'finished'
 
