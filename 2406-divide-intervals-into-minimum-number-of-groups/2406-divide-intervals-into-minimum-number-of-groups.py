@@ -6,16 +6,11 @@ class Solution:
         counter = collections.defaultdict(int)
         interval = collections.namedtuple('interval','start end')
         intervals = [interval(start,end) for start,end in sorted(intervals)]
-        
         # end
         pq = []
-        answer = 0
 
         for interval in intervals:
             if pq and interval.start > pq[0]:
                 heapq.heappop(pq)
-                heapq.heappush(pq,interval.end)
-            else:
-                heapq.heappush(pq,interval.end)
-                
+            heapq.heappush(pq,interval.end)    
         return len(pq)
