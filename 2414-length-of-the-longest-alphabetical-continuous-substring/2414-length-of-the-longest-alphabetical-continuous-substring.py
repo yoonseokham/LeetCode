@@ -1,7 +1,7 @@
 class Solution:
     def longestContinuousSubstring(self, s: str) -> int:
         index_dict = {}
-        for index,char in enumerate("abcdefghijklmnopqrstuvwxyz"):
+        for index, char in enumerate("abcdefghijklmnopqrstuvwxyz"):
             index_dict[char] = index
 
         previous = -1
