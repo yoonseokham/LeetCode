@@ -10,17 +10,18 @@ import collections
 class Solution:
     def __init__(self):
         self.nodeInfo = collections.namedtuple('nodeInfo', 'node level')
-    
+
     def reverseBinaryTreeByBFS(self, node):
         level_node = collections.defaultdict(list)
         q = collections.deque([self.nodeInfo(node, 0)])
         previousLevel = 0
         while q:
-            if not previousLevel%2 and q[0].level%2:
+            if not previousLevel % 2 and q[0].level % 2:
                 start = 0
                 end = len(q) - 1
                 while start < end:
-                    q[start].node.val, q[end].node.val = q[end].node.val, q[start].node.val
+                    q[start].node.val, q[end].node.val = q[end].node.val, q[
+                        start].node.val
                     start += 1
                     end -= 1
             currentNode, currentLevel = q.popleft()
