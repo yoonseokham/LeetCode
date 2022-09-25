@@ -37,7 +37,7 @@ class Solution:
             if currentLevel % 2:
                 currentNode.val = level_node[currentLevel][index]
                 index += 1
-            if not currentLevel % 2:
+            else:
                 index = 0
             for child in [currentNode.left, currentNode.right]:
                 if child:
