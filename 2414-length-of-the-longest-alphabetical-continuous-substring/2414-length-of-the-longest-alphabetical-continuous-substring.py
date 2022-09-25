@@ -1,16 +1,15 @@
 class Solution:
     def longestContinuousSubstring(self, s: str) -> int:
-        string = "abcdefghijklmnopqrstuvwxyz"
-
-        def findIndex(char):
-            return string.index(char)
+        index_dict = {}
+        for index,char in enumerate("abcdefghijklmnopqrstuvwxyz"):
+            index_dict[char] = index
 
         previous = -1
         current = 0
         local_answer = 1
         global_answer = 1
         for i in s:
-            current = findIndex(i)
+            current = index_dict[i]
             if previous == -1:
                 previous = current
             elif previous + 1 == current:
