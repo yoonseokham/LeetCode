@@ -4,12 +4,10 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-import functools
-import bisect
-
 class Solution:
     def closestNodes(self, root: Optional[TreeNode], queries: List[int]) -> List[List[int]]:
         datas = []
+        
         def visit_all_bst(node):
             if not node:
                 return
@@ -17,10 +15,12 @@ class Solution:
             visit_all_bst(node.left)
             visit_all_bst(node.right)
         visit_all_bst(root)
+        set_datas = set(datas)
         datas.sort()
-        print(datas)
         
         def lower_bound(target):
+            if target in set_datas:
+                return target
             start = 0
             end = len(datas) - 1
             answer  = 10**6 + 1
@@ -34,6 +34,8 @@ class Solution:
             return -1 if answer == 10**6 + 1 else answer
 
         def upper_bound(target):
+            if target in set_datas:
+                return target
             start = 0
             end = len(datas) - 1
             answer  = -1
