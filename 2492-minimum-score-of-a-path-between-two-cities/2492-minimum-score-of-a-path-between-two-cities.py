@@ -1,28 +1,29 @@
 import collections
+class union_find(object):
+    def __init__(self,n):
+        self.parent = [i for i in range(n+1)]
+    def __call__(self,node1,node2):
+        pass
+    def connectXY(self,x,y):
+        x = self.parentX(x)
+        y = self.parentX(y)
+        if x > y:
+            self.parent[x] = y
+        if x < y:
+            self.parent[y] = x
+
+    def parentX(self,x):
+        if x == self.parent[x]:
+            return x
+        self.parent[x] = self.parentX(self.parent[x])
+        return self.parent[x]
 class Solution:
+            
     def minScore(self, n: int, roads: List[List[int]]) -> int:
         graph = collections.defaultdict(lambda:collections.defaultdict(bool))
-        
-        parent = [i for i in range(n+1)]
-        def parentX(x):
-            if parent[x] == x:
-                return x
-            parent[x] = parentX(parent[x])
-            return parent[x]
-        
-        def connectXY(x,y):
-            x = parentX(x)
-            y = parentX(y)
-            if x == y:
-                return True
-            elif x > y:
-                parent[x] = y
-            else:
-                parent[y] = x
-
-        
+        root_info = union_find(n)
         for start,end,cost in roads:
-            connectXY(start,end)
+            root_info.connectXY(start,end)
             if graph[start][end]:
                 graph[start][end] = min(cost,graph[start][end])
                 graph[end][start] = min(cost,graph[end][start])         
@@ -32,7 +33,7 @@ class Solution:
         connected_with_1 = set()
         answer = 10**4+1
         for i in range(1,n+1):
-            if parentX(i) == 1:
+            if root_info.parentX(i) == 1:
                 connected_with_1.add(i)
         
         for start,dicts in graph.items():
