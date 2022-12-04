@@ -37,8 +37,6 @@ class Solution:
         
         for start,dicts in graph.items():
             for end,cost in dicts.items():
-                if cost:
-                    print(start, end , cost)
-                    if start in connected_with_1 and end in connected_with_1:
-                        answer = min(answer,cost)
+                if start in connected_with_1 and end in connected_with_1:
+                    answer = min(answer,cost)
         return answer
