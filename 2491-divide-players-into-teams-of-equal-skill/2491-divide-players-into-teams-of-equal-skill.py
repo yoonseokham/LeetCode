@@ -2,7 +2,6 @@ import collections
 class Solution:
 
     def dividePlayers(self, skill: List[int]) -> int:
-        Team = collections.namedtuple('Team','first second')
         total_skill_sum = sum(skill)
         if total_skill_sum%(len(skill)//2):
             return -1
