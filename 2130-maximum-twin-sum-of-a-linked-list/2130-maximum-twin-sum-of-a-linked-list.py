@@ -9,9 +9,19 @@ class Solution:
         get_nodes(head)
         nodes = get_nodes.result_list
         answer = 0
-        for i, j in zip(range(0,
-                              len(nodes) // 2), range(len(nodes) - 1, 0, -1)):
-            answer = max(nodes[i] + nodes[j], answer)
+        for i, j in zip(
+                range(0,
+                      len(nodes) // 2),
+                range(
+                    len(nodes) - 1,
+                    0,
+                    -1,
+                ),
+        ):
+            answer = max(
+                nodes[i] + nodes[j],
+                answer,
+            )
         return answer
 
 
